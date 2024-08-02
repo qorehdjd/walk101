@@ -1,0 +1,454 @@
+/* 기본 스타일 유지 */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  overflow-x: hidden;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+nav {
+  display: flex;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 101; /* 햄버거 버튼이 메뉴 위에 표시되도록 설정 */
+}
+
+.menu-toggle span {
+  background-color: #fff;
+  height: 3px;
+  width: 25px;
+  margin: 4px;
+  transition: 0.4s;
+}
+
+/* Small screens (tablets, phones) */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #333;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 10px 0;
+    z-index: 100; /* 메뉴가 다른 요소 위에 표시되도록 설정 */
+  }
+
+  nav ul.showing {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+section {
+  text-align: center;
+}
+
+section.visible .fade-up {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+#home {
+  transition: none;
+}
+
+#home .main-visual {
+  background: url("main-background.jpg") no-repeat center center/cover;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+#home .main-visual h1 {
+  font-size: 2.5em;
+  margin: 0;
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  width: auto;
+  max-width: calc(100% - 100px); /* 여백을 고려한 최대 너비 */
+  box-sizing: border-box; /* 박스 모델을 포함하여 패딩 및 보더를 포함한 너비 계산 */
+  line-height: 1.2; /* 줄 간격 조정 */
+}
+
+@media (max-width: 768px) {
+  #home .main-visual h1 {
+    font-size: 2em; /* 모바일 장치에서 글꼴 크기를 줄임 */
+    left: 20px;
+    right: 20px;
+    max-width: calc(100% - 40px); /* 여백을 고려한 최대 너비 */
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #home .main-visual h1 {
+    font-size: 1.5em; /* 더 작은 장치에서 글꼴 크기를 줄임 */
+    padding: 10px;
+  }
+}
+
+#services {
+  padding: 50px 20px;
+  background-color: #102139;
+}
+
+#services h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+#services p {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+.service-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 70%; /* 서비스 섹션 너비를 70%로 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+}
+
+.service {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service img {
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.service img.scanoX {
+  width: 80%;
+}
+
+.service img.walkApp {
+  width: 50%;
+}
+
+.service h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.service p {
+  font-size: 1em;
+}
+
+@media (max-width: 768px) {
+  .service {
+    width: 90%; /* 모바일 장치에서 너비 조정 */
+  }
+
+  .service-details {
+    width: 90%; /* 모바일 장치에서 서비스 섹션 너비 조정 */
+  }
+
+  .service img.scanoX,
+  .service img.walkApp {
+    width: 90%;
+  }
+}
+
+#technology {
+  padding: 50px 20px;
+}
+
+#technology h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+#technology p {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.technology-details {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 400px; /* 최소 높이 추가 */
+}
+
+.technology-details img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .technology-details {
+    min-height: 600px; /* 모바일 장치에서 최소 높이 조정 */
+  }
+}
+
+#testimonials {
+  padding: 50px 20px;
+}
+
+#testimonials h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.testimonials {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.testimonial {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(45% - 40px);
+  max-width: calc(45% - 40px);
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.testimonial img {
+  max-width: 100%;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+#partners {
+  padding: 50px 20px;
+  background-color: #f8f9fa;
+}
+
+#partners h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+.partners-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.partner {
+  width: 150px; /* 동일한 너비 */
+  height: 150px; /* 동일한 높이 */
+  overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.partner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 이미지 비율을 유지하며 컨테이너에 맞춤 */
+  display: block;
+  transition: transform 0.3s;
+}
+
+.partner img:hover {
+  transform: scale(1.1);
+}
+
+#contact {
+  padding: 50px 20px;
+}
+
+#contact h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+#contact p {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+#contact form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#contact form label {
+  font-weight: bold;
+}
+
+#contact form input,
+#contact form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#contact form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#contact form button:hover {
+  background-color: #555;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer .footer-links {
+  margin-bottom: 10px;
+}
+
+footer .footer-links a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+footer .footer-links a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.video-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.main-visual {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}

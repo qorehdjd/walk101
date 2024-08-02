@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>팀원</title>
+    <link rel="stylesheet" href="team.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="index.html"><img src="/images/logo.png" alt="회사 로고" /></a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">홈</a></li>
+          <li><a href="patents.html">특허 리스트</a></li>
+          <li><a href="team.html">팀원</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <section id="team">
+      <h2>팀원 소개</h2>
+      <div class="team-list">
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 1" />
+          <h3>김철수</h3>
+          <p>CEO</p>
+          <p>
+            김철수는 회사의 CEO로서 회사의 전반적인 운영과 전략을 담당하고
+            있습니다.
+          </p>
+        </div>
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 2" />
+          <h3>이영희</h3>
+          <p>CTO</p>
+          <p>이영희는 회사의 CTO로서 기술 개발과 혁신을 이끌고 있습니다.</p>
+        </div>
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 3" />
+          <h3>박민수</h3>
+          <p>COO</p>
+          <p>박민수는 회사의 COO로서 운영 및 관리를 담당하고 있습니다.</p>
+        </div>
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 4" />
+          <h3>박민수</h3>
+          <p>COO</p>
+          <p>박민수는 회사의 COO로서 운영 및 관리를 담당하고 있습니다.</p>
+        </div>
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 5" />
+          <h3>박민수</h3>
+          <p>COO</p>
+          <p>박민수는 회사의 COO로서 운영 및 관리를 담당하고 있습니다.</p>
+        </div>
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 6" />
+          <h3>박민수</h3>
+          <p>COO</p>
+          <p>박민수는 회사의 COO로서 운영 및 관리를 담당하고 있습니다.</p>
+        </div>
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 7" />
+          <h3>박민수</h3>
+          <p>COO</p>
+          <p>박민수는 회사의 COO로서 운영 및 관리를 담당하고 있습니다.</p>
+        </div>
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 8" />
+          <h3>박민수</h3>
+          <p>COO</p>
+          <p>박민수는 회사의 COO로서 운영 및 관리를 담당하고 있습니다.</p>
+        </div>
+        <div class="team-member fade-up">
+          <img src="images/cat.jpg" alt="팀원 9" />
+          <h3>박민수</h3>
+          <p>COO</p>
+          <p>박민수는 회사의 COO로서 운영 및 관리를 담당하고 있습니다.</p>
+        </div>
+        <!-- 추가적인 팀원 정보를 여기에 추가 -->
+      </div>
+    </section>
+    <footer>
+      <div>상호명 : 주식회사 워크원오원</div>
+      <div>사업자등록번호 : 240-81-02944 | 대표 : 채동식</div>
+      <div>주소 : 인천광역시 서구 심곡로100번길 7, 의생명융합관 2층</div>
+      <div>H.P : 032-568-1016 | FAX : 032-568-1018</div>
+      <p>&copy; 2024 walk101. All Rights Reserved.</p>
+    </footer>
+    <script>
+      // script.js
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navUl = document.querySelector("nav ul");
+        const fadeElements = document.querySelectorAll(".fade-up");
+
+        mobileMenu.addEventListener("click", function () {
+          navUl.classList.toggle("showing");
+        });
+
+        const observerOptions = {
+          threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        fadeElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+  </body>
+</html>

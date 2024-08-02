@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>walk101</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="/images/logo.png" alt="회사 로고" />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">홈</a></li>
+          <li><a href="patents.html">특허 리스트</a></li>
+          <li><a href="team.html">팀원</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <section id="home">
+      <div class="video-container">
+        <video autoplay muted loop id="background-video">
+          <source src="vedio/174086-850404739_small.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="main-visual fade-up">
+          <h1>
+            최고의 AI 기술로<br />
+            당신의 발 건강을 진단합니다
+          </h1>
+        </div>
+      </div>
+    </section>
+    <section id="services">
+      <h2 class="fade-up">서비스 소개</h2>
+      <p class="fade-up">최첨단 AI 기술로 발 건강을 진단하고 분석합니다.</p>
+      <div class="service-details">
+        <div class="service fade-up">
+          <img
+            class="scanoX"
+            src="images/service/scano-web.png"
+            alt="서비스 이미지"
+          />
+          <h3 class="fade-up">ScanoX</h3>
+          <p class="fade-up">정확한 평발 진단을 제공합니다.</p>
+        </div>
+        <div class="service fade-up">
+          <img
+            class="walkApp"
+            src="images/service/walkApp.png"
+            alt="서비스 이미지"
+          />
+          <h3 class="fade-up">오다리 진단</h3>
+          <p class="fade-up">정확한 오다리 진단을 제공합니다.</p>
+        </div>
+      </div>
+    </section>
+    <section id="technology">
+      <h2 class="fade-up">AI 기술</h2>
+      <p class="fade-up">
+        우리 서비스는 인공지능(AI)을 이용하여 빠르고 정확하게 분석합니다. 소요
+        시간을 63% 단축시키며, 95% 이상의 높은 정확도를 자랑합니다. 지금 바로
+        ScanoX를 통해 효율적이고 정확한 진단을 경험해보세요.
+      </p>
+      <div class="technology-details fade-up">
+        <img src="./images/service/scano-web.png" alt="AI 기술 이미지" />
+        <p class="fade-up"></p>
+      </div>
+    </section>
+    <section id="testimonials">
+      <h2 class="fade-up">사용자 후기</h2>
+      <div class="testimonials">
+        <div class="testimonial fade-up">
+          <img src="user1.jpg" alt="사용자 사진" />
+          <p class="fade-up">"정말 놀라운 서비스였습니다!" - 사용자 A</p>
+        </div>
+        <div class="testimonial fade-up">
+          <img src="user2.jpg" alt="사용자 사진" />
+          <p class="fade-up">
+            "정확한 진단 덕분에 건강을 되찾았습니다." - 사용자 B
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="partners">
+      <h2 class="fade-up">파트너사</h2>
+      <div class="partners-list fade-up">
+        <div class="partner">
+          <img src="images/partnership/abc-logo.png" alt="파트너사 1 로고" />
+        </div>
+        <div class="partner">
+          <img
+            src="images/partnership/cozyfit-logo.png"
+            alt="파트너사 2 로고"
+          />
+        </div>
+        <div class="partner">
+          <img
+            src="images/partnership/higherrank-logo.png"
+            alt="파트너사 3 로고"
+          />
+        </div>
+        <div class="partner">
+          <img
+            src="images/partnership/hospital-logo.png"
+            alt="파트너사 4 로고"
+          />
+        </div>
+        <div class="partner">
+          <img
+            src="images/partnership/outsoursing-logo.jpg"
+            alt="파트너사 5 로고"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <h2 class="fade-up">문의하기</h2>
+      <p class="fade-up">궁금한 점이 있으시면 언제든지 문의해주세요.</p>
+      <form action="submit_contact.php" method="post" class="fade-up">
+        <label for="name" class="fade-up">이름:</label>
+        <input type="text" id="name" name="name" required />
+        <label for="email" class="fade-up">이메일:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="message" class="fade-up">메시지:</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit">보내기</button>
+      </form>
+    </section>
+    <footer>
+      <div>상호명 : 주식회사 워크원오원</div>
+      <div>사업자등록번호 : 240-81-02944 | 대표 : 채동식</div>
+      <div>주소 : 인천광역시 서구 심곡로100번길 7, 의생명융합관 2층</div>
+      <div>H.P : 032-568-1016 | FAX : 032-568-1018</div>
+      <p>&copy; 2024 walk101. All Rights Reserved.</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navUl = document.querySelector("nav ul");
+
+        mobileMenu.addEventListener("click", function () {
+          navUl.classList.toggle("showing");
+        });
+
+        const options = {
+          threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver(function (entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            } else {
+              entry.target.classList.remove("visible");
+            }
+          });
+        }, options);
+
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+      });
+    </script>
+  </body>
+</html>
