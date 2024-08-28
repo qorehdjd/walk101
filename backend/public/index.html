@@ -7,34 +7,35 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <div class="logo">
-        <img src="/images/logo.png" alt="회사 로고" />
-      </div>
-      <nav>
-        <ul>
-          <li><a href="index.html">홈</a></li>
-          <li><a href="patents.html">특허 리스트</a></li>
-          <li><a href="team.html">팀원</a></li>
-        </ul>
-        <div class="menu-toggle" id="mobile-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-    </header>
     <section id="home">
       <div class="video-container">
+        <header>
+          <div class="logo">
+            <img src="/images/logo.png" alt="회사 로고" />
+          </div>
+          <nav>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="IR.html">IR</a></li>
+              <li><a href="patents.html">Patent</a></li>
+              <li><a href="team.html">Team</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </nav>
+        </header>
         <video autoplay muted loop id="background-video">
           <source src="vedio/174086-850404739_small.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div class="main-visual fade-up">
-          <h1>
+          <!-- <h1>
             최고의 AI 기술로<br />
             당신의 발 건강을 진단합니다
-          </h1>
+          </h1> -->
         </div>
       </div>
     </section>
@@ -45,7 +46,7 @@
         <div class="service fade-up">
           <img
             class="scanoX"
-            src="images/service/scano-web.png"
+            src="images/service/scano-web.jpg"
             alt="서비스 이미지"
           />
           <h3 class="fade-up">ScanoX</h3>
@@ -70,7 +71,7 @@
         ScanoX를 통해 효율적이고 정확한 진단을 경험해보세요.
       </p>
       <div class="technology-details fade-up">
-        <img src="./images/service/scano-web.png" alt="AI 기술 이미지" />
+        <img src="./images/service/scano-web.jpg" alt="AI 기술 이미지" />
         <p class="fade-up"></p>
       </div>
     </section>
@@ -131,24 +132,53 @@
         <input type="email" id="email" name="email" required />
         <label for="message" class="fade-up">메시지:</label>
         <textarea id="message" name="message" required></textarea>
-        <button type="submit">보내기</button>
+        <button type="submit">
+          <a href="mailto:drchaeos@gmail.com">보내기</a>
+        </button>
       </form>
     </section>
     <footer>
       <div>상호명 : 주식회사 워크원오원</div>
       <div>사업자등록번호 : 240-81-02944 | 대표 : 채동식</div>
       <div>주소 : 인천광역시 서구 심곡로100번길 7, 의생명융합관 2층</div>
-      <div>H.P : 032-568-1016 | FAX : 032-568-1018</div>
+      <div>전화 : 032-568-1016 | 팩스 : 032-568-1018</div>
       <p>&copy; 2024 walk101. All Rights Reserved.</p>
     </footer>
+    <div id="menu-overlay"></div>
+    <!-- 메뉴 바깥쪽을 클릭할 때 메뉴를 닫기 위한 오버레이 -->
+    <div id="close-menu">&times;</div>
+    <!-- 메뉴를 닫기 위한 X 버튼 -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const sections = document.querySelectorAll("section");
         const mobileMenu = document.getElementById("mobile-menu");
         const navUl = document.querySelector("nav ul");
+        const body = document.body;
+        const closeMenu = document.getElementById("close-menu");
+        const menuOverlay = document.getElementById("menu-overlay");
+
+        function closeNavMenu() {
+          navUl.classList.remove("showing");
+          mobileMenu.classList.remove("hidden");
+          body.classList.remove("no-scroll");
+          closeMenu.style.display = "none";
+          menuOverlay.style.display = "none";
+        }
 
         mobileMenu.addEventListener("click", function () {
           navUl.classList.toggle("showing");
+          mobileMenu.classList.toggle("hidden");
+          body.classList.toggle("no-scroll");
+          closeMenu.style.display = "block";
+          menuOverlay.style.display = "block";
+        });
+
+        closeMenu.addEventListener("click", closeNavMenu);
+        menuOverlay.addEventListener("click", closeNavMenu);
+
+        // Prevent click on menu from closing it
+        navUl.addEventListener("click", function (e) {
+          e.stopPropagation();
         });
 
         const options = {

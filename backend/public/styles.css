@@ -1,22 +1,24 @@
 /* 기본 스타일 유지 */
-
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
   overflow-x: hidden;
 }
 
+/* 스크롤 막기 */
+body.no-scroll {
+  overflow: hidden;
+}
+
 header {
-  background-color: #333;
   color: #fff;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  z-index: 100;
 }
 
 header .logo img {
@@ -32,7 +34,14 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  position: relative;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+nav ul.showing {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 nav ul li {
@@ -47,13 +56,13 @@ nav ul li a {
 
 nav ul li a:hover {
   text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .menu-toggle {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  z-index: 101; /* 햄버거 버튼이 메뉴 위에 표시되도록 설정 */
 }
 
 .menu-toggle span {
@@ -64,22 +73,50 @@ nav ul li a:hover {
   transition: 0.4s;
 }
 
+/* 메뉴 닫기 버튼(X) 스타일 */
+#close-menu {
+  position: absolute;
+  top: 20px;
+  left: 35px;
+  font-size: 2rem;
+  color: #fff;
+  display: none;
+  cursor: pointer;
+  z-index: 200; /* 메뉴보다 높은 z-index */
+}
+
+/* 메뉴 오버레이 스타일 */
+#menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100; /* 메뉴보다 낮은 z-index */
+}
+
 /* Small screens (tablets, phones) */
 @media (max-width: 768px) {
   nav ul {
-    display: none;
+    display: flex; /* flex로 변경 */
     flex-direction: column;
-    width: 100%;
-    background-color: #333;
-    position: absolute;
-    top: 60px;
+    width: 70%;
+    height: 100vh;
+    background-color: #000000;
+    position: fixed; /* absolute에서 fixed로 변경 */
     left: 0;
-    padding: 10px 0;
-    z-index: 100; /* 메뉴가 다른 요소 위에 표시되도록 설정 */
+    top: 0;
+    padding: 70px 40px;
+    align-items: start;
+    z-index: 150;
+    transform: translateX(-100%); /* 처음에 메뉴를 화면 밖으로 숨김 */
+    transition: transform 0.3s ease-in-out;
   }
 
   nav ul.showing {
-    display: flex;
+    transform: translateX(0); /* 메뉴가 나타날 때 화면에 표시 */
   }
 
   nav ul li {
@@ -90,8 +127,13 @@ nav ul li a:hover {
   .menu-toggle {
     display: flex;
   }
+
+  .menu-toggle.hidden {
+    display: none;
+  }
 }
 
+/* Section 스타일 */
 section {
   text-align: center;
 }
@@ -127,34 +169,35 @@ section.visible .fade-up {
   margin: 0;
   position: absolute;
   left: 50px;
-  top: 50%;
+  bottom: 20%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
+  /* background: rgba(0, 0, 0, 0.6); */
   padding: 20px;
   border-radius: 10px;
   width: auto;
-  max-width: calc(100% - 100px); /* 여백을 고려한 최대 너비 */
-  box-sizing: border-box; /* 박스 모델을 포함하여 패딩 및 보더를 포함한 너비 계산 */
-  line-height: 1.2; /* 줄 간격 조정 */
+  max-width: calc(100% - 100px);
+  box-sizing: border-box;
+  line-height: 1.2;
 }
 
 @media (max-width: 768px) {
   #home .main-visual h1 {
-    font-size: 2em; /* 모바일 장치에서 글꼴 크기를 줄임 */
+    font-size: 2em;
     left: 20px;
     right: 20px;
-    max-width: calc(100% - 40px); /* 여백을 고려한 최대 너비 */
+    max-width: calc(100% - 40px);
     padding: 15px;
   }
 }
 
 @media (max-width: 480px) {
   #home .main-visual h1 {
-    font-size: 1.5em; /* 더 작은 장치에서 글꼴 크기를 줄임 */
+    font-size: 1.5em;
     padding: 10px;
   }
 }
 
+/* Services Section 스타일 */
 #services {
   padding: 50px 20px;
   background-color: #102139;
@@ -177,8 +220,9 @@ section.visible .fade-up {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 70%; /* 서비스 섹션 너비를 70%로 설정 */
-  margin: 0 auto; /* 중앙 정렬 */
+  width: 70%;
+  margin: 0 auto;
+  max-width: 800px;
 }
 
 .service {
@@ -219,19 +263,20 @@ section.visible .fade-up {
 
 @media (max-width: 768px) {
   .service {
-    width: 90%; /* 모바일 장치에서 너비 조정 */
+    width: 100%;
   }
 
   .service-details {
-    width: 90%; /* 모바일 장치에서 서비스 섹션 너비 조정 */
+    width: 100%;
   }
 
   .service img.scanoX,
   .service img.walkApp {
-    width: 90%;
+    width: 100%;
   }
 }
 
+/* Technology Section 스타일 */
 #technology {
   padding: 50px 20px;
 }
@@ -254,7 +299,7 @@ section.visible .fade-up {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 400px; /* 최소 높이 추가 */
+  min-height: 400px;
 }
 
 .technology-details img {
@@ -265,10 +310,11 @@ section.visible .fade-up {
 
 @media (max-width: 768px) {
   .technology-details {
-    min-height: 600px; /* 모바일 장치에서 최소 높이 조정 */
+    min-height: 600px;
   }
 }
 
+/* Testimonials Section 스타일 */
 #testimonials {
   padding: 50px 20px;
 }
@@ -302,6 +348,7 @@ section.visible .fade-up {
   margin-bottom: 10px;
 }
 
+/* Partners Section 스타일 */
 #partners {
   padding: 50px 20px;
   background-color: #f8f9fa;
@@ -321,9 +368,9 @@ section.visible .fade-up {
 }
 
 .partner {
-  width: 150px; /* 동일한 너비 */
-  height: 150px; /* 동일한 높이 */
-  overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 설정 */
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -332,7 +379,7 @@ section.visible .fade-up {
 .partner img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 이미지 비율을 유지하며 컨테이너에 맞춤 */
+  object-fit: contain;
   display: block;
   transition: transform 0.3s;
 }
@@ -341,6 +388,7 @@ section.visible .fade-up {
   transform: scale(1.1);
 }
 
+/* Contact Section 스타일 */
 #contact {
   padding: 50px 20px;
 }
@@ -379,7 +427,6 @@ section.visible .fade-up {
 }
 
 #contact form button {
-  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   background-color: #333;
@@ -392,6 +439,16 @@ section.visible .fade-up {
   background-color: #555;
 }
 
+#contact form button a {
+  padding: 10px 0px;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}
+
+/* Footer 스타일 */
 footer {
   background-color: #333;
   color: #fff;
@@ -413,6 +470,7 @@ footer .footer-links a:hover {
   text-decoration: underline;
 }
 
+/* Fade-up 애니메이션 */
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -424,6 +482,7 @@ footer .footer-links a:hover {
   }
 }
 
+/* 비디오 컨테이너 */
 .video-container {
   position: relative;
   height: 100vh;
