@@ -4,31 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WALK101 IR 페이지</title>
-    <!-- Font Awesome 라이브러리 추가 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    />
     <style>
+      /* 기존 CSS 내용 그대로 유지 */
+
       body {
         font-family: "Roboto", sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f5f5f5;
+        background-color: #f8f9fa;
         overflow-x: hidden;
         color: #343a40;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
       }
 
       header {
-        background-color: #1e1e2f;
+        background-color: #343a40;
         color: #fff;
         padding: 15px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
       }
 
       header .logo img {
@@ -74,12 +69,13 @@
         transition: 0.4s;
       }
 
+      /* Small screens (tablets, phones) */
       @media (max-width: 768px) {
         nav ul {
           display: none;
           flex-direction: column;
           width: 100%;
-          background-color: #1e1e2f;
+          background-color: #343a40;
           position: absolute;
           top: 60px;
           left: 0;
@@ -100,127 +96,71 @@
         }
       }
 
-      main {
-        flex-grow: 1;
-        padding: 40px 20px;
-        background-color: #f5f5f5;
-      }
-
-      .container {
-        width: 80%;
-        margin: 0 auto;
-        background-color: #ffffff;
-        padding: 30px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        border-radius: 12px;
-      }
-
-      h2 {
+      #team {
+        padding: 50px 20px;
         text-align: center;
-        margin-bottom: 30px;
-        font-size: 28px;
-        color: #1e1e2f;
+        background-color: #fff;
       }
 
-      .ir-list {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 30px;
-      }
-
-      @media (max-width: 768px) {
-        main {
-          padding: 20px 10px;
-        }
-
-        .container {
-          width: 90%;
-          padding: 30px 15px;
-        }
-      }
-
-      .ir-list th,
-      .ir-list td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #dddddd;
-      }
-
-      .ir-list th {
-        background-color: #343a40;
-        color: white;
-        text-align: center;
-        font-size: 16px;
-      }
-
-      .ir-list td {
-        font-size: 15px;
-        color: #343a40;
-        text-align: center;
-      }
-
-      .ir-list tr:hover {
-        background-color: #f1f1f1;
-      }
-
-      .download-icon {
-        color: #007bff;
-        font-size: 18px;
-        cursor: pointer;
-      }
-
-      .download-icon:hover {
-        color: #0056b3;
-      }
-
-      .contact-section {
-        text-align: center;
-        padding: 60px 20px;
-        background-color: #ffffff;
-        color: #343a40;
-        margin-top: 40px;
-        border-radius: 12px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .contact-section h2 {
+      #team h2 {
+        font-size: 1.5em;
         margin-bottom: 20px;
-        font-size: 28px;
-        color: #1e1e2f;
+        color: #343a40;
       }
 
-      .contact-section p {
-        margin-bottom: 30px;
-        font-size: 18px;
-        line-height: 1.6;
-        color: #555;
+      .team-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
       }
 
-      .contact-section a {
-        display: inline-block;
-        background-color: #007bff;
-        color: white;
-        padding: 15px 30px;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 16px;
-        transition: background-color 0.3s ease;
+      @media (min-width: 768px) {
+        .team-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
-      .contact-section a:hover {
-        background-color: #0056b3;
+      @media (min-width: 1024px) {
+        .team-list {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .team-member {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, opacity 1s ease-out, transform 1s ease-out;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .team-member.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .team-member:hover {
+        transform: translateY(-10px);
+      }
+
+      .team-member img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+
+      .team-member h3 {
+        margin-top: 0;
+        color: #007bff;
       }
 
       footer {
-        background-color: #343a40;
+        background-color: #333;
         color: #fff;
         text-align: center;
         padding: 20px 0;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        clear: both;
       }
 
       footer .footer-links {
@@ -235,6 +175,96 @@
 
       footer .footer-links a:hover {
         text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background-color: #343a40;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          padding: 10px 0;
+        }
+
+        nav ul.showing {
+          display: flex;
+        }
+
+        nav ul li {
+          margin: 10px 0;
+          text-align: center;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+      }
+
+      .section {
+        padding: 20px;
+      }
+
+      .section img {
+        width: 100%;
+        height: auto;
+        max-width: 800px;
+        margin-bottom: 20px;
+        object-fit: cover;
+      }
+
+      .section-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+        text-align: center; /* 중앙 정렬 */
+        font-size: 2em !important; /* 폰트 크기 조정 */
+      }
+
+      /* 데스크톱에서 이미지 중앙 정렬 */
+      @media (min-width: 1024px) {
+        .section {
+          text-align: center;
+        }
+
+        .section img {
+          display: block;
+          margin: 0 auto;
+        }
+      }
+
+      .section p {
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .growth-plan {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        .section {
+          padding: 10px;
+        }
+
+        .section-title {
+          font-size: 18px;
+          margin-bottom: 15px;
+        }
+
+        .section p {
+          font-size: 14px;
+          margin-bottom: 20px;
+        }
+
+        .section img {
+          max-width: 100%;
+        }
       }
     </style>
   </head>
@@ -258,199 +288,70 @@
       </nav>
     </header>
 
-    <main>
-      <div class="container">
-        <h2>IR 자료</h2>
-        <table class="ir-list">
-          <thead>
-            <tr>
-              <th>제목</th>
-              <th>날짜</th>
-              <th>다운로드</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>WALK101 사업계획서</td>
-              <td>2024.08.28</td>
-              <td>
-                <a href="pdfs/walk101사업계획서.pptx" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>WALK101 IR자료</td>
-              <td>2024.03.18</td>
-              <td>
-                <a href="pdfs/워크원오원IR (1).pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2024.07.18</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2024.04.18</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2024.04.08</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.02.10</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.07.15</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.03.12</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-            <tr>
-              <td>분기 보고서 2023 Q1</td>
-              <td>2023.09.20</td>
-              <td>
-                <a href="pdfs/quarterly_report_q1_2023.pdf" download
-                  ><i class="fas fa-download download-icon"></i
-                ></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- 시장 규모 섹션 -->
+    <div class="section">
+      <h2 class="section-title">시장 규모</h2>
+      <img src="./images/IR/market_size01.jpg" alt="시장 규모 1" />
+      <img src="./images/IR/market_size02.jpg" alt="시장 규모 2" />
+      <img src="./images/IR/market_size03.jpg" alt="시장 규모 3" />
+    </div>
 
-      <!-- 문의하기 Section -->
-      <!-- <div class="contact-section">
-        <h2>문의하기</h2>
-        <p>
-          WALK101에 대해 궁금한 점이 있으시면 언제든지 문의해 주세요. 여러분의
-          질문에 성심성의껏 답변드리겠습니다.
-        </p>
-        <a href="mailto:drchaeos@gmail.com">문의하기</a>
-      </div> -->
-    </main>
+    <!-- 경쟁 회사 섹션 -->
+    <div class="section">
+      <h2 class="section-title">경쟁 회사</h2>
+      <img src="./images/IR/competitors.jpg" alt="경쟁 회사" />
+    </div>
+
+    <!-- Business Structure 섹션 -->
+    <div class="section">
+      <h2 class="section-title">Business Structure</h2>
+      <img
+        src="./images/IR/business_structure01.png"
+        alt="Business Structure 1"
+      />
+      <img
+        src="./images/IR/business_structure02.png"
+        alt="Business Structure 2"
+      />
+    </div>
+
+    <!-- Software R&D 섹션 -->
+    <div class="section">
+      <h2 class="section-title">Software R&D</h2>
+      <img src="./images/IR/software_rnd01.png" alt="Software R&D 1" />
+      <img src="./images/IR/software_rnd02.png" alt="Software R&D 2" />
+    </div>
+
+    <!-- ABC 마트 공급 계약 섹션 -->
+    <div class="section">
+      <h2 class="section-title">ABC 마트 공급 계약</h2>
+      <img src="images/IR/abcMart01.png" alt="ABC 마트 공급 계약 1" />
+      <img src="images/IR/abcMart02.png" alt="ABC 마트 공급 계약 2" />
+    </div>
+
+    <!-- SW 설명 섹션 -->
+    <div class="section">
+      <h2 class="section-title">SW 설명</h2>
+      <img src="images/IR/SW01.png" alt="SW 설명 1" />
+      <img src="images/IR/SW02.png" alt="SW 설명 2" />
+    </div>
+
+    <!-- 사업 성장 계획 섹션 -->
+    <div class="section">
+      <h2 class="section-title">사업 성장 계획</h2>
+      <div class="growth-plan">
+        <p>24년: ABC마트 기본 인솔 납품</p>
+        <p>25년: Feet analyzer 출시 / 기능성 인솔</p>
+        <p>26년: Customized insole / 의료기기</p>
+      </div>
+    </div>
 
     <footer>
       <div>상호명 : 주식회사 워크원오원</div>
       <div>사업자등록번호 : 240-81-02944 | 대표 : 채동식</div>
-      <div>주소 : 인천광역시 서구 심곡로100번길 7, 의생명융합관 2층</div>
+      <div>
+        기업부설연구소 : 인천광역시 서구 심곡로100번길 7, 의생명융합관 3층
+      </div>
       <div>전화 : 032-568-1016 | 팩스 : 032-568-1018</div>
       <p>&copy; 2024 walk101. All Rights Reserved.</p>
     </footer>
