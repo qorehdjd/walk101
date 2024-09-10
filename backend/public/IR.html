@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WALK101 IR 페이지</title>
     <style>
-      /* 기존 CSS 내용 그대로 유지 */
-
       body {
         font-family: "Roboto", sans-serif;
         margin: 0;
@@ -69,7 +67,6 @@
         transition: 0.4s;
       }
 
-      /* Small screens (tablets, phones) */
       @media (max-width: 768px) {
         nav ul {
           display: none;
@@ -84,113 +81,7 @@
 
         nav ul.showing {
           display: flex;
-        }
-
-        nav ul li {
-          margin: 10px 0;
-          text-align: center;
-        }
-
-        .menu-toggle {
-          display: flex;
-        }
-      }
-
-      #team {
-        padding: 50px 20px;
-        text-align: center;
-        background-color: #fff;
-      }
-
-      #team h2 {
-        font-size: 1.5em;
-        margin-bottom: 20px;
-        color: #343a40;
-      }
-
-      .team-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-      }
-
-      @media (min-width: 768px) {
-        .team-list {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .team-list {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      .team-member {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s, opacity 1s ease-out, transform 1s ease-out;
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      .team-member.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .team-member:hover {
-        transform: translateY(-10px);
-      }
-
-      .team-member img {
-        width: 100%;
-        border-radius: 10px;
-        margin-bottom: 10px;
-      }
-
-      .team-member h3 {
-        margin-top: 0;
-        color: #007bff;
-      }
-
-      footer {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 20px 0;
-      }
-
-      footer .footer-links {
-        margin-bottom: 10px;
-      }
-
-      footer .footer-links a {
-        color: #fff;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-
-      footer .footer-links a:hover {
-        text-decoration: underline;
-      }
-
-      @media (max-width: 768px) {
-        nav ul {
-          display: none;
-          flex-direction: column;
-          width: 100%;
-          background-color: #343a40;
-          position: absolute;
-          top: 60px;
-          left: 0;
-          padding: 10px 0;
-        }
-
-        nav ul.showing {
-          display: flex;
+          z-index: 100;
         }
 
         nav ul li {
@@ -213,31 +104,46 @@
         max-width: 800px;
         margin-bottom: 20px;
         object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .section img:hover {
+        transform: scale(1.05);
       }
 
       .section-title {
         font-size: 24px;
         margin-bottom: 10px;
         color: #333;
-        text-align: center; /* 중앙 정렬 */
-        font-size: 2em !important; /* 폰트 크기 조정 */
+        text-align: center;
+        font-size: 2em !important;
       }
 
-      /* 데스크톱에서 이미지 중앙 정렬 */
-      @media (min-width: 1024px) {
-        .section {
-          text-align: center;
-        }
-
-        .section img {
-          display: block;
-          margin: 0 auto;
-        }
+      .image-container {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        text-align: center;
       }
 
-      .section p {
-        color: #666;
-        margin-bottom: 40px;
+      .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .image-container .number {
+        position: absolute;
+        top: -40px;
+        left: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 50%;
+        font-size: 1.2em;
+        font-weight: bold;
       }
 
       .growth-plan {
@@ -245,6 +151,34 @@
         color: #555;
         margin-bottom: 20px;
         text-align: center;
+      }
+
+      /* 모달 스타일 */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal img {
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
       }
 
       @media (max-width: 768px) {
@@ -257,14 +191,40 @@
           margin-bottom: 15px;
         }
 
-        .section p {
-          font-size: 14px;
-          margin-bottom: 20px;
-        }
-
         .section img {
           max-width: 100%;
         }
+
+        .growth-plan {
+          font-size: 1em;
+        }
+      }
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      footer .footer-links {
+        margin-bottom: 10px;
+      }
+
+      footer .footer-links a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+
+      footer .footer-links a:hover {
+        text-decoration: underline;
+      }
+
+      .image-container .high-quality {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain; /* 이미지의 비율을 유지하면서 크기를 조정 */
       }
     </style>
   </head>
@@ -291,49 +251,161 @@
     <!-- 시장 규모 섹션 -->
     <div class="section">
       <h2 class="section-title">시장 규모</h2>
-      <img src="./images/IR/market_size01.jpg" alt="시장 규모 1" />
-      <img src="./images/IR/market_size02.jpg" alt="시장 규모 2" />
-      <img src="./images/IR/market_size03.jpg" alt="시장 규모 3" />
+      <div class="image-container">
+        <img
+          src="./images/IR/market_size01.jpg"
+          alt="시장 규모 1"
+          class="zoomable"
+        />
+        <div class="number">1</div>
+      </div>
+      <div class="image-container">
+        <img
+          src="./images/IR/market_size02.jpg"
+          alt="시장 규모 2"
+          class="zoomable"
+        />
+        <div class="number">2</div>
+      </div>
+      <div class="image-container">
+        <img
+          src="./images/IR/market_size03.jpg"
+          alt="시장 규모 3"
+          class="zoomable"
+        />
+        <div class="number">3</div>
+      </div>
     </div>
 
     <!-- 경쟁 회사 섹션 -->
     <div class="section">
       <h2 class="section-title">경쟁 회사</h2>
-      <img src="./images/IR/competitors.jpg" alt="경쟁 회사" />
+      <div class="image-container">
+        <img
+          src="./images/IR/competitors.jpg"
+          alt="경쟁 회사"
+          class="zoomable"
+        />
+        <div class="number">4</div>
+      </div>
+    </div>
+
+    <!-- 제품 소개 섹션 -->
+    <div class="section">
+      <h2 class="section-title">제품 소개</h2>
+      <div class="image-container">
+        <img
+          src="./images/service/scanoX.png"
+          alt="제품 이미지 1"
+          class="zoomable"
+        />
+        <div class="number">5</div>
+      </div>
+      <div class="image-container">
+        <img
+          src="./images/service/walkApp.png"
+          alt="제품 이미지 2"
+          class="zoomable high-quality"
+        />
+        <div class="number">6</div>
+      </div>
     </div>
 
     <!-- Business Structure 섹션 -->
     <div class="section">
       <h2 class="section-title">Business Structure</h2>
-      <img
-        src="./images/IR/business_structure01.png"
-        alt="Business Structure 1"
-      />
-      <img
-        src="./images/IR/business_structure02.png"
-        alt="Business Structure 2"
-      />
+      <div class="image-container">
+        <img
+          src="./images/IR/business_structure01.png"
+          alt="Business Structure 1"
+          class="zoomable"
+        />
+        <div class="number">7</div>
+      </div>
+      <div class="image-container">
+        <img
+          src="./images/IR/business_structure02.png"
+          alt="Business Structure 2"
+          class="zoomable"
+        />
+        <div class="number">8</div>
+      </div>
     </div>
 
     <!-- Software R&D 섹션 -->
     <div class="section">
       <h2 class="section-title">Software R&D</h2>
-      <img src="./images/IR/software_rnd01.png" alt="Software R&D 1" />
-      <img src="./images/IR/software_rnd02.png" alt="Software R&D 2" />
+      <div class="image-container">
+        <img
+          src="./images/IR/software_rnd01.png"
+          alt="Software R&D 1"
+          class="zoomable"
+        />
+        <div class="number">9</div>
+      </div>
+      <div class="image-container">
+        <img
+          src="./images/IR/software_rnd02.png"
+          alt="Software R&D 2"
+          class="zoomable"
+        />
+        <div class="number">10</div>
+      </div>
     </div>
 
     <!-- ABC 마트 공급 계약 섹션 -->
     <div class="section">
       <h2 class="section-title">ABC 마트 공급 계약</h2>
-      <img src="images/IR/abcMart01.png" alt="ABC 마트 공급 계약 1" />
-      <img src="images/IR/abcMart02.png" alt="ABC 마트 공급 계약 2" />
+      <div class="image-container">
+        <img
+          src="images/IR/abcMart01.png"
+          alt="ABC 마트 공급 계약 1"
+          class="zoomable"
+        />
+        <div class="number">11</div>
+      </div>
     </div>
 
-    <!-- SW 설명 섹션 -->
+    <!-- 향후 비젼 섹션 -->
     <div class="section">
-      <h2 class="section-title">SW 설명</h2>
-      <img src="images/IR/SW01.png" alt="SW 설명 1" />
-      <img src="images/IR/SW02.png" alt="SW 설명 2" />
+      <h2 class="section-title">향후 비전</h2>
+      <div class="image-container">
+        <img
+          src="images/IR/future_vision01.jpg"
+          alt="향후 비젼 1"
+          class="zoomable"
+        />
+        <div class="number">12</div>
+      </div>
+      <div class="image-container">
+        <img
+          src="images/IR/future_vision02.jpg"
+          alt="향후 비젼 2"
+          class="zoomable"
+        />
+        <div class="number">13</div>
+      </div>
+    </div>
+
+    <!-- 파이프라인 섹션 -->
+    <div class="section">
+      <h2 class="section-title">파이프라인</h2>
+      <div class="image-container">
+        <img
+          src="images/IR/pipeline01.jpg"
+          alt="파이프라인 1"
+          class="zoomable"
+        />
+        <div class="number">14</div>
+      </div>
+      <div class="image-container">
+        <img
+          src="images/IR/pipeline02.jpg"
+          alt="파이프라인 2"
+          class="zoomable"
+        />
+        <div class="number">15</div>
+      </div>
     </div>
 
     <!-- 사업 성장 계획 섹션 -->
@@ -344,6 +416,12 @@
         <p>25년: Feet analyzer 출시 / 기능성 인솔</p>
         <p>26년: Customized insole / 의료기기</p>
       </div>
+    </div>
+
+    <!-- 모달 -->
+    <div id="image-modal" class="modal">
+      <span class="close">&times;</span>
+      <img id="modal-image" />
     </div>
 
     <footer>
@@ -364,6 +442,30 @@
         mobileMenu.addEventListener("click", function () {
           navUl.classList.toggle("showing");
         });
+      });
+      // 모달 기능
+      const modal = document.getElementById("image-modal");
+      const modalImage = document.getElementById("modal-image");
+      const closeModal = document.querySelector(".close");
+
+      // 확대 가능한 이미지를 클릭할 때 모달에 이미지 표시
+      document.querySelectorAll(".zoomable").forEach((image) => {
+        image.addEventListener("click", function () {
+          modal.style.display = "flex";
+          modalImage.src = this.src;
+        });
+      });
+
+      // 모달 닫기
+      closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      // 모달 바깥쪽 클릭 시 닫기
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
       });
     </script>
   </body>

@@ -222,7 +222,6 @@ section.visible .fade-up {
   gap: 20px;
   width: 70%;
   margin: 0 auto;
-  max-width: 800px;
 }
 
 .service {
@@ -245,7 +244,7 @@ section.visible .fade-up {
 }
 
 .service img.scanoX {
-  width: 80%;
+  width: 100%;
 }
 
 .service img.walkApp {
